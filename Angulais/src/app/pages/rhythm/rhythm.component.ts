@@ -27,6 +27,8 @@ export class RhythmComponent implements AfterViewInit {
   currentRadius: number = 100;
   scaleBy = 1;
   audio!: Promise<HTMLAudioElement>;
+  timeouts: any[] = [];
+  checkCircleInterval : any;
 
   @HostListener('window:keydown', ['$event']) onKeyDown(event: any) {
     if (event.defaultPrevented) {
@@ -35,7 +37,8 @@ export class RhythmComponent implements AfterViewInit {
 
     if(event.key == "Escape")
     {
-      this.CloseFenetre()
+      this.CloseFenetre();
+      return;
     }
 
     this.checkCircle(this.circles, event.key.toLowerCase())
@@ -45,13 +48,19 @@ export class RhythmComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     //this.audio = new Audio('assets/enchanted-chimes-177906.mp3');
     this.audio = this.video.nativeElement.play();
+    this.audio.catch(err => {
+      this.endGame();
+    });
+    this.video.nativeElement.onended = () => {
+      this.endGame();
+    };
     this.renderCanvas();
   }
 
   CloseFenetre()
   {
     // Quitter : Redirection
-    window.close()
+    this.endGame();
   }
 
   checkCircle(circles: Circle[], key: string)
@@ -162,19 +171,21 @@ export class RhythmComponent implements AfterViewInit {
 
     for (var i = 4; i < beats.length; i += 3)
     {
-      setTimeout(()=>{
+      this.timeouts.push(setTimeout(()=>{
         this.NoteBlocks();
-      }, beats[i]-2500)
+      }, beats[i]-2500));
     }
-    var timerEndGame = setInterval(() => {
-      //this.endGame();
-    }, this.video.nativeElement.duration * 1000);
   }
 
   endGame(){
     this.gameOver = true
     this.video.nativeElement.pause();
     this.video.nativeElement.currentTime = 0;
+    this.timeouts.forEach((timeout) => {
+      clearTimeout(timeout);
+    });
+    clearTimeout(this.checkCircleInterval);
+    this.canvaCircles.nativeElement.style.display = "none"
 
     this.comment.nativeElement.textContent = "GAME OVER !"
   }
@@ -214,7 +225,7 @@ export class RhythmComponent implements AfterViewInit {
       this.draw(this.circles, ctxCircles)
     }, 25)
 
-    setInterval( () =>
+    this.checkCircleInterval = setInterval( () =>
     {
       for (var i = 0; i < this.circles.length; i++)
       {
