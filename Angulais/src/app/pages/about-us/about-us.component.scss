@@ -1,7 +1,11 @@
-.about-us {
+.container {
   height: calc(100vh - 120px);
-  color: white;
   overflow-y: auto;
+}
+
+.about-us {
+  height: calc(100% - 120px);
+  color: white;
 }
 
 app-footer {

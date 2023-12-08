@@ -1,0 +1,44 @@
+.rhythm {
+  height: calc(100% - 120px);
+}
+
+.container {
+  height: calc(100vh - 120px);
+  overflow-y: auto;
+}
+
+canvas {
+  padding: 0;
+  margin: auto;
+  display: block;
+  position: absolute;
+  top: 45%;
+  left: 45%;
+  transform: translate(-32%,25%);
+}
+
+#canvaCircles {
+  z-index: 2;
+}
+
+#canvaBackground {
+  z-index: 1;
+}
+#comment {
+  color: rgb(202, 202, 202);
+  text-align: center;
+}
+
+#score {
+  color: rgb(202, 202, 202);
+}
+
+.rulesBox {
+  position: absolute;
+  top: 20%;
+  right: 10%;
+}
+
+h1, h2 {
+  color: rgb(202, 202, 202);
+}

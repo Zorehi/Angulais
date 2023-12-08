@@ -1,3 +1,34 @@
 .quiz {
   height: calc(100vh - 120px);
 }
+
+.quiz-container {
+  height: calc(100% - 120px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.button {
+  background-color: #2196F3;
+  cursor: pointer;
+  width: 30%;
+  height: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  color: white;
+  outline: none;
+  border: none;
+  transition: transform 0.2s ease-in-out;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+  text-transform: uppercase;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}

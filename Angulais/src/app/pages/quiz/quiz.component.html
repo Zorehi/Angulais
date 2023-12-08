@@ -1,6 +1,7 @@
 <div class="quiz">
     <div class="quiz-container">
-        <div></div>
+        <app-question [question]="quiz.questions[index]" [show]="answer"></app-question>
+        <button #button class="button" (click)="clickButton()">Confirmer</button>
     </div>
     <app-footer></app-footer>
 </div>

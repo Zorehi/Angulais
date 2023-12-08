@@ -1,0 +1,14 @@
+<div class="quiz-container">
+    <div class="question">
+        <span>{{question.question}}</span>
+        <span *ngIf="show">{{question.how}}</span>
+    </div>
+    <div class="answers-wrapper">
+        <div #true class="answer" (click)="clickTrue()">
+            <span>VRAI</span>
+        </div>
+        <div #false class="answer" (click)="clickFalse()">
+            <span>FAUX</span>
+        </div>
+    </div>
+</div>
