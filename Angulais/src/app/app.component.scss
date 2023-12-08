@@ -1,5 +1,7 @@
 main {
-  background: #131112;
+  background-color: #131112;
   width: 100%;
-  height: calc(100% - 120px);
+  height: 100%;
+  max-height: calc(100vh - 120px);
+  overflow: hidden;
 }

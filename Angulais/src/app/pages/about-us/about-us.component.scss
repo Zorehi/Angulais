@@ -1,0 +1,57 @@
+.about-us {
+  height: calc(100vh - 120px);
+  color: white;
+}
+
+app-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.about-us-1 {
+  padding: 50px 100px;
+  display: flex;
+
+  img {
+    width: 30%;
+  }
+
+  .about-us-1-text {
+    h1 {
+      font-size: 50px;
+      font-weight: 500;
+    }
+
+    p {
+      font-size: 20px;
+      font-weight: 300;
+      text-align: justify;
+      padding-right: 100px;
+    }
+  }
+}
+
+.separation {
+  width: 50%;
+  height: 2px;
+  background-color: #757575;
+  margin: 0 auto;
+}
+
+.about-us-2 {
+  padding: 50px 100px;
+
+  h1 {
+    font-size: 50px;
+    font-weight: 500;
+  }
+
+  p {
+    font-size: 20px;
+    font-weight: 300;
+    text-align: justify;
+    padding-right: 100px;
+  }
+}
+
