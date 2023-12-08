@@ -1,11 +1,11 @@
 .about-us {
   height: calc(100vh - 120px);
   color: white;
+  overflow-y: auto;
 }
 
 app-footer {
-  position: absolute;
-  bottom: 0;
+  bottom: 100%;
   width: 100%;
 }
 
