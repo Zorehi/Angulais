@@ -11,6 +11,7 @@ export class RhythmComponent implements AfterViewInit {
   @ViewChild('scoreText') scoreText!: ElementRef;
   @ViewChild('canvaCircles') canvaCircles!: ElementRef;
   @ViewChild('canvaBackground') canvaBackground!: ElementRef;
+  @ViewChild('video') video!: ElementRef;
 
   circles: Circle[] = [];
   circlesPerfect: Circle[] = [];
@@ -25,7 +26,7 @@ export class RhythmComponent implements AfterViewInit {
   maxRadius = 100;
   currentRadius: number = 100;
   scaleBy = 1;
-  audio!: HTMLAudioElement;
+  audio!: Promise<HTMLAudioElement>;
 
   @HostListener('window:keydown', ['$event']) onKeyDown(event: any) {
     if (event.defaultPrevented) {
@@ -42,7 +43,8 @@ export class RhythmComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.audio = new Audio('assets/enchanted-chimes-177906.mp3');
+    //this.audio = new Audio('assets/enchanted-chimes-177906.mp3');
+    this.audio = this.video.nativeElement.play();
     this.renderCanvas();
   }
 
@@ -166,20 +168,20 @@ export class RhythmComponent implements AfterViewInit {
     }
     var timerEndGame = setInterval(() => {
       //this.endGame();
-    }, this.audio.duration * 1000);
+    }, this.video.nativeElement.duration * 1000);
   }
 
   endGame(){
     this.gameOver = true
-    this.audio.pause();
-    this.audio.currentTime = 0;
+    this.video.nativeElement.pause();
+    this.video.nativeElement.currentTime = 0;
 
     this.comment.nativeElement.textContent = "GAME OVER !"
   }
 
   renderCanvas() {
-    this.audio.play()
-    console.log(this.audio.duration)
+    this.video.nativeElement.play()
+    console.log(this.video.nativeElement.duration)
 
     if(this.gameOver)
     {
